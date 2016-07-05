@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.rock.android.tagselector.Utils;
 import com.rock.android.tagselector.interfaces.SelectorAdapter;
 import com.rock.android.tagselector.model.DataBean;
 
@@ -52,5 +53,10 @@ public class CustomAdapter extends BaseAdapter implements SelectorAdapter{
     @Override
     public void setData(List<DataBean> list) {
         dataBeen = list;
+    }
+
+    @Override
+    public int getItemHeight() {
+        return Utils.dp2px(ctx,40);
     }
 }

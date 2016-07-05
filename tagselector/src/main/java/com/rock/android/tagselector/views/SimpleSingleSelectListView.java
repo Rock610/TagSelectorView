@@ -24,7 +24,6 @@ import java.util.List;
  */
 public class SimpleSingleSelectListView extends ListView implements ITagSelector<DataBean> {
 
-    public static final int DEFAULT_ITEM_HEIGHT = 50;//dp
     private List<DataBean> mList;
     private SelectorAdapter mAdapter;
 
@@ -80,9 +79,8 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
     public void setData(@NonNull List<DataBean> list) {
 
         mList = list;
-        SimpleAdapter adapter = (SimpleAdapter) this.mAdapter;
-        adapter.clear();
-        adapter.addAll(list);
+        mAdapter.setData(list);
+        mAdapter.notifyDataSetChanged();
 
     }
 
@@ -117,7 +115,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
 
     @Override
     public int itemHeight() {
-        return Utils.dp2px(getContext(),DEFAULT_ITEM_HEIGHT);
+        return mAdapter.getItemHeight();
     }
 
     @Override
@@ -167,6 +165,11 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
         @Override
         public void setData(List<DataBean> list) {
             mList = list;
+        }
+
+        @Override
+        public int getItemHeight() {
+            return Utils.dp2px(getContext(),50);
         }
     }
 

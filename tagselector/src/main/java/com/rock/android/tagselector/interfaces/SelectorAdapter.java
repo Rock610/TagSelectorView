@@ -12,4 +12,6 @@ public interface SelectorAdapter {
     void setData(List<DataBean> list);
 
     void notifyDataSetChanged();
+
+    int getItemHeight();
 }
