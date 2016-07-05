@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.model.DataBean;
 import com.rock.android.tagselector.model.Tags;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
@@ -83,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
 
         tagSelectView.attach(dataList);
 
-//        tagSelectView.getTabView(0).getTagSelectorView().setListAdapter();
+        ITagSelector tagSelectorView = tagSelectView.getTabView(0).getTagSelectorView();
+        tagSelectorView.setListAdapter(new CustomAdapter(dataBeanList,this));
+
+        tagSelectorView.getData().add(0,new MyDataBean("im new"));
+        tagSelectorView.refresh();
     }
 }

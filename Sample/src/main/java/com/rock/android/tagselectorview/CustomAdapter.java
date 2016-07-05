@@ -1,21 +1,26 @@
 package com.rock.android.tagselectorview;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.rock.android.tagselector.interfaces.SelectorAdapter;
+import com.rock.android.tagselector.model.DataBean;
 
 import java.util.List;
 
 /**
  * Created by rock on 16/7/5.
  */
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapter extends BaseAdapter implements SelectorAdapter{
 
-    private List<MyDataBean> dataBeen;
+    private List<DataBean> dataBeen;
     private Context ctx;
 
-    public CustomAdapter(List<MyDataBean> dataBeen, Context ctx) {
+    public CustomAdapter(List<DataBean> dataBeen, Context ctx) {
         this.dataBeen = dataBeen;
         this.ctx = ctx;
     }
@@ -37,6 +42,15 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        convertView = LayoutInflater.from(ctx).inflate(R.layout.item_selector,parent,false);
+        TextView tv = (TextView) convertView.findViewById(R.id.textView);
+        tv.setText(dataBeen.get(position).name);
+
+        return convertView;
+    }
+
+    @Override
+    public void setData(List<DataBean> list) {
+        dataBeen = list;
     }
 }
