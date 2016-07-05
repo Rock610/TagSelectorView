@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/tabViewWrapperLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" />
+
+    <FrameLayout
+        android:id="@+id/listContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:layout_marginTop="50dp">
+
+        <FrameLayout
+            android:id="@+id/wrapperLayout"
+            android:layout_width="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_height="250dp" />
+
+    </FrameLayout>
+
+</merge>

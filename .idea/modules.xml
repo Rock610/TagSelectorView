@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Sample/Sample.iml" filepath="$PROJECT_DIR$/Sample/Sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TagSelectorView.iml" filepath="$PROJECT_DIR$/TagSelectorView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sample/app.iml" filepath="$PROJECT_DIR$/Sample/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tagselector/tagselector.iml" filepath="$PROJECT_DIR$/tagselector/tagselector.iml" />
+    </modules>
+  </component>
+</project>
