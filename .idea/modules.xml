@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Sample/Sample.iml" filepath="$PROJECT_DIR$/Sample/Sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/TagSelectorView.iml" filepath="$PROJECT_DIR$/TagSelectorView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Sample/app.iml" filepath="$PROJECT_DIR$/Sample/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/tagselector/tagselector.iml" filepath="$PROJECT_DIR$/tagselector/tagselector.iml" />
     </modules>
   </component>
