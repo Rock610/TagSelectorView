@@ -14,9 +14,10 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.rock.android.tagselector.model.Tags;
+import com.rock.android.tagselector.R;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
+import com.rock.android.tagselector.model.Tags;
 
 /**
  * Created by rock on 16/7/4.
@@ -269,9 +270,15 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
             return view;
         }
 
+        RelativeLayout layout = new RelativeLayout(getContext());
+        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT);
         TextView tv = new TextView(getContext());
         mTextView = tv;
+        tv.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.arrow_bottom,0);
         tv.setGravity(Gravity.CENTER);
-        return tv;
+
+        layout.addView(tv,params);
+        return layout;
     }
 }

@@ -85,6 +85,8 @@ public class TagSelectView extends FrameLayout {
             }
         });
 
+        listContentLayout.setVisibility(View.GONE);
+
     }
 
     public void attach(List<Tags<DataBean>> tagsList) {
@@ -114,6 +116,8 @@ public class TagSelectView extends FrameLayout {
                 if(onTagViewStatusChangedListener != null){
                     onTagViewStatusChangedListener.onClosed(view);
                 }
+
+                view.getTextView().setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.arrow_bottom,0);
             }
 
             @Override
@@ -133,6 +137,8 @@ public class TagSelectView extends FrameLayout {
                 if(onTagViewStatusChangedListener != null){
                     onTagViewStatusChangedListener.onOpened(view);
                 }
+
+                view.getTextView().setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.arrow_top,0);
             }
         });
 

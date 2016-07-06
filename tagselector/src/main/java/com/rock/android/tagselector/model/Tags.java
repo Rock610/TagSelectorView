@@ -26,32 +26,35 @@ public class Tags<T> {
         this.isChangeAfterClicked = isChangeAfterClicked;
     }
 
-    public Tags setTags(List<T> tags) {
+    public Tags() {
+    }
+
+    public Tags<T> setTags(List<T> tags) {
         this.tags = tags;
         return this;
     }
 
-    public Tags setDefaultTag(String defaultTag) {
+    public Tags<T> setDefaultTag(String defaultTag) {
         this.defaultTag = defaultTag;
         return this;
     }
 
-    public Tags setSelectFirst(boolean selectFirst) {
+    public Tags<T> setSelectFirst(boolean selectFirst) {
         isSelectFirst = selectFirst;
         return this;
     }
 
-    public Tags setChangeAfterClicked(boolean changeAfterClicked) {
+    public Tags<T> setChangeAfterClicked(boolean changeAfterClicked) {
         isChangeAfterClicked = changeAfterClicked;
         return this;
     }
 
-    public Tags setLayoutRes(int layoutRes) {
+    public Tags<T> setLayoutRes(int layoutRes) {
         this.layoutRes = layoutRes;
         return this;
     }
 
-    public Tags setTextViewId(int textViewId) {
+    public Tags<T> setTextViewId(int textViewId) {
         this.textViewId = textViewId;
         return this;
     }
