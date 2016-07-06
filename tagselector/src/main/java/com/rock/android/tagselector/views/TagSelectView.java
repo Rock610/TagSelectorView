@@ -145,6 +145,8 @@ public class TagSelectView extends FrameLayout {
         tabView.getTagSelectorView().setOnItemClickListener(new ITagSelector.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
+                tabView.close();
                 if(onTagSelectedListener != null){
                     onTagSelectedListener.onTagSelected(position,tabPosition);
                 }
