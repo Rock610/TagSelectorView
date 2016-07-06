@@ -84,10 +84,10 @@ public class MainActivity extends AppCompatActivity {
                 .setTags(dataBeanList)
                 .setChangeAfterClicked(true)
                 .setSelectFirst(false)
-                );
+                .setLayoutRes(R.layout.layout_tab_0)
+                .setTextViewId(R.id.theTextView));
 
-        //.setLayoutRes(R.layout.layout_tab_0)
-//        .setTextViewId(R.id.theTextView)
+
 
         List<DataBean> dataBeanList1 = new ArrayList<>();
         for (int i = 0; i < count; i++) {
