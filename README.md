@@ -4,7 +4,7 @@ TagSelectorView
 A tag selector with animation
 
 
-![gif](https://github.com/Rock610/TagSelectorView/blob/master/gif/sample.gif)
+![gif](https://github.com/Rock610/TagSelectorView/blob/master/gif/gif2.gif)
 
 
 #useage
