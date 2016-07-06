@@ -4,6 +4,9 @@ TagSelectorView
 A tag selector with animation
 
 
+![gif](https://github.com/Rock610/TagSelectorView/blob/master/gif/sample.gif)
+
+
 #useage
 
 - in xml
@@ -33,7 +36,7 @@ dataList.add(new Tags<DataBean>().
                 .setSelectFirst(false);
 
 ```
-data source must extend the DataBean,you can read it in the source code
+data source must extend the DataBean
 - to insert a data to any tab
 ```
 ITagSelectorTabView tagSelectorView = tagSelectView.getTabView(0).getTagSelectorView();
