@@ -9,6 +9,28 @@ A tag selector with animation
 
 #useage
 
+- gradle
+
+in project build.gradle
+```
+allprojects {
+    repositories {
+        maven {
+            url  "http://dl.bintray.com/rock610/maven"
+        }
+    }
+}
+
+```
+
+in module build.gradle
+```
+dependencies {
+    compile 'com.rock.android:tagselector:1.0'
+}
+
+```
+
 - in xml
 ```
 <com.rock.android.tagselector.views.TagSelectView
