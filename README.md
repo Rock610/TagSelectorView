@@ -7,7 +7,21 @@ A tag selector with animation
 ![gif](https://github.com/Rock610/TagSelectorView/blob/master/gif/gif2.gif)
 
 
-#useage
+#Setup
+
+```
+repositories {
+    maven {
+        url  "http://dl.bintray.com/rock610/maven"
+    }
+}
+
+dependencies {
+    compile 'com.rock.android:tagselector:1.0'
+}
+```
+
+#Usage
 
 - in xml
 ```
@@ -73,4 +87,8 @@ tagSelectView.setOnTagViewStatusChangedListener(new TagSelectView.OnTagViewStatu
         });
 
 ```
+
+#License
+[https://www.gnu.org/licenses/licenses.html](https://www.gnu.org/licenses/licenses.html)
+
 
