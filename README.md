@@ -9,9 +9,9 @@ A tag selector with animation
 
 #useage
 
-- gradle
+- import
 
-in project build.gradle
+build.gradle in project
 ```
 allprojects {
     repositories {
@@ -23,7 +23,7 @@ allprojects {
 
 ```
 
-in module build.gradle
+build.gradle in module
 ```
 dependencies {
     compile 'com.rock.android:tagselector:1.0'
