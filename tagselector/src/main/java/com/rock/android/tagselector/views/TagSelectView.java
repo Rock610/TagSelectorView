@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.rock.android.tagselector.model.DataBean;
 import com.rock.android.tagselector.R;
-import com.rock.android.tagselector.model.Tags;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
+import com.rock.android.tagselector.model.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +88,7 @@ public class TagSelectView extends FrameLayout {
 
     }
 
-    public void attach(List<Tags<DataBean>> tagsList) {
+    public void attach(List<Tags> tagsList) {
         if (tagsList == null) return;
 
         LinearLayout.LayoutParams tabParams =

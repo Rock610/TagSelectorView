@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private TagSelectView tagSelectView;
-    private List<Tags<DataBean>> dataList;
+    private List<Tags> dataList;
     private ITagSelector tagSelectorView;
     private TextView firstTabTv;
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             dataBeanList.add(new MyDataBean("item A" + i));
         }
 
-        dataList.add(new Tags<DataBean>().
+        dataList.add(new Tags().
                 setDefaultTag(dataBeanList.get(0).name)
                 .setTags(dataBeanList)
                 .setChangeAfterClicked(true)
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             dataBeanList1.add(new MyDataBean("item B" + i));
         }
 
-        dataList.add(new Tags<>(dataBeanList1, dataBeanList1.get(0).name, false, true));
+        dataList.add(new Tags(dataBeanList1, dataBeanList1.get(0).name, false, true));
 
 
         int countc = 10;
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             dataBeanList2.add(new MyDataBean("item C" + i));
         }
 
-        dataList.add(new Tags<>(dataBeanList2, dataBeanList2.get(0).name, false, true));
+        dataList.add(new Tags(dataBeanList2, dataBeanList2.get(0).name, false, true));
 
         tagSelectView.attach(dataList);
 

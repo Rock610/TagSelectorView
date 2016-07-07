@@ -5,9 +5,9 @@ import java.util.List;
 /**
  * Created by rock on 16/7/4.
  */
-public class Tags<T> {
+public class Tags {
 
-    public List<T> tags;
+    public List<? extends DataBean> tags;
 
     public String defaultTag;
 
@@ -19,7 +19,7 @@ public class Tags<T> {
 
     public int textViewId;
 
-    public Tags(List<T> tags, String defaultTag, boolean isSelectFirst, boolean isChangeAfterClicked) {
+    public Tags(List<? extends DataBean> tags, String defaultTag, boolean isSelectFirst, boolean isChangeAfterClicked) {
         this.tags = tags;
         this.defaultTag = defaultTag;
         this.isSelectFirst = isSelectFirst;
@@ -29,32 +29,32 @@ public class Tags<T> {
     public Tags() {
     }
 
-    public Tags<T> setTags(List<T> tags) {
+    public Tags setTags(List<DataBean> tags) {
         this.tags = tags;
         return this;
     }
 
-    public Tags<T> setDefaultTag(String defaultTag) {
+    public Tags setDefaultTag(String defaultTag) {
         this.defaultTag = defaultTag;
         return this;
     }
 
-    public Tags<T> setSelectFirst(boolean selectFirst) {
+    public Tags setSelectFirst(boolean selectFirst) {
         isSelectFirst = selectFirst;
         return this;
     }
 
-    public Tags<T> setChangeAfterClicked(boolean changeAfterClicked) {
+    public Tags setChangeAfterClicked(boolean changeAfterClicked) {
         isChangeAfterClicked = changeAfterClicked;
         return this;
     }
 
-    public Tags<T> setLayoutRes(int layoutRes) {
+    public Tags setLayoutRes(int layoutRes) {
         this.layoutRes = layoutRes;
         return this;
     }
 
-    public Tags<T> setTextViewId(int textViewId) {
+    public Tags setTextViewId(int textViewId) {
         this.textViewId = textViewId;
         return this;
     }
