@@ -88,3 +88,7 @@ tagSelectView.setOnTagViewStatusChangedListener(new TagSelectView.OnTagViewStatu
 
 ```
 
+#License
+[https://www.gnu.org/licenses/licenses.html](https://www.gnu.org/licenses/licenses.html)
+
+
