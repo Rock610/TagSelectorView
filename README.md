@@ -48,7 +48,7 @@ dataList.add(new Tags<DataBean>().
                 .setTags(dataBeanList)
                 .setChangeAfterClicked(true)
                 .setSelectFirst(false);
-
+tagSelectView.attach(dataList);
 ```
 data source must extend the DataBean
 - to insert a data to any tab
