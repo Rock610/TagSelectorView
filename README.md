@@ -11,13 +11,11 @@ A tag selector with animation
 
 ```
 repositories {
-    maven {
-        url  "http://dl.bintray.com/rock610/maven"
-    }
+   jcenter()
 }
 
 dependencies {
-    compile 'com.rock.android:tagselector:1.0'
+    compile 'com.rock.android:tagselector:1.0.1'
 }
 ```
 
