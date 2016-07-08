@@ -201,7 +201,12 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
     }
 
     @Override
-    public void setUp(Tags tags, FrameLayout selectorParent, FrameLayout wrapper) {
+    public void setup(Tags tags, FrameLayout selectorParent, FrameLayout wrapper) {
+        setup(tags,selectorParent,wrapper,null);
+    }
+
+    @Override
+    public void setup(Tags tags, FrameLayout selectorParent, FrameLayout wrapper,ITagSelector selectorView){
 
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         try {
@@ -214,23 +219,27 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
         mWrapper = wrapper;
         this.selectorParent = selectorParent;
+        mTags = tags;
+        if(selectorView != null){
+            this.selectorView = selectorView;
+            wrapper.addView((View) selectorView);
+        }else{
+           setDefaultSelector(wrapper);
+        }
+
+        this.selectorView.setTabView(this);
+        this.selectorView.setData(tags.tags);
+        setTag(tags.defaultTag);
+
+    }
+
+    private void setDefaultSelector(FrameLayout wrapper){
         selectorView = new SimpleSingleSelectListView(getContext());
 
-        selectorView.setTabView(this);
         FrameLayout.LayoutParams paramsList = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         wrapper.addView((View) selectorView, paramsList);
-        mTags = tags;
-        selectorView.setData(tags.tags);
 
-        setTag(tags.defaultTag);
-
-        selectorView.setOnItemClickListener(new ITagSelector.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                mTags.tags.get(position);
-            }
-        });
     }
 
     @Override

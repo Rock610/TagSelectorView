@@ -1,5 +1,7 @@
 package com.rock.android.tagselector.model;
 
+import com.rock.android.tagselector.interfaces.ITagSelector;
+
 import java.util.List;
 
 /**
@@ -19,6 +21,8 @@ public class Tags {
 
     public int textViewId;
 
+    public ITagSelector selector;
+
     public Tags(List<? extends DataBean> tags, String defaultTag, boolean isSelectFirst, boolean isChangeAfterClicked) {
         this.tags = tags;
         this.defaultTag = defaultTag;
@@ -27,6 +31,11 @@ public class Tags {
     }
 
     public Tags() {
+    }
+
+    public Tags setSelector(ITagSelector selector) {
+        this.selector = selector;
+        return this;
     }
 
     public Tags setTags(List<DataBean> tags) {

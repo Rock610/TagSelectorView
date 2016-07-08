@@ -32,7 +32,9 @@ public interface ITagSelectorTabView {
 
     void toggle();
 
-    void setUp(Tags tags, FrameLayout selectorParent,FrameLayout wrapper);
+    void setup(Tags tags, FrameLayout selectorParent, FrameLayout wrapper);
+
+    void setup(Tags tags, FrameLayout selectorParent, FrameLayout wrapper,ITagSelector selectorView);
 
     TextView getTextView();
 

@@ -102,7 +102,12 @@ public class TagSelectView extends FrameLayout {
 
     protected ITagSelectorTabView newTabView(final int tabPosition, Tags tags) {
         final ITagSelectorTabView tabView = new TagSelectorTabTabView(getContext());
-        tabView.setUp(tags, listContentLayout, wrapperLayout);
+        if(tags.selector != null){
+            tabView.setup(tags, listContentLayout, wrapperLayout,tags.selector);
+        }else{
+            tabView.setup(tags, listContentLayout, wrapperLayout);
+        }
+
         tabView.setOnStatusChangedListener(new ITagSelectorTabView.OnStatusChangedListener() {
             @Override
             public void willDismiss(ITagSelectorTabView view) {
