@@ -2,6 +2,7 @@ package com.rock.android.tagselector.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,6 +36,10 @@ public class TagSelectView extends FrameLayout {
     private OnTagSelectedListener onTagSelectedListener;
 
     protected int tabHeight;
+
+    protected int bottomLineColor;
+
+    protected Drawable dividerDrawable;
 
     public TagSelectView setOnTagSelectedListener(OnTagSelectedListener onTagSelectedListener) {
         this.onTagSelectedListener = onTagSelectedListener;
@@ -76,15 +81,24 @@ public class TagSelectView extends FrameLayout {
         if(attrs != null){
             TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs,R.styleable.TagSelectView,0,0);
             tabHeight = a.getDimensionPixelSize(R.styleable.TagSelectView_tabHeight,0);
-
+            bottomLineColor = a.getColor(R.styleable.TagSelectView_tabBottomLineColor,getResources().getColor(R.color.lineColor));
+            dividerDrawable = a.getDrawable(R.styleable.TagSelectView_tabDivider);
             a.recycle();
             System.out.println("tabHeight====>"+tabHeight);
         }
 
         LayoutInflater.from(getContext()).inflate(R.layout.layout_tag_selector_view, this);
 
+        View bottomLine = findViewById(R.id.bottomLine);
+        FrameLayout.LayoutParams paramsLine = (LayoutParams) bottomLine.getLayoutParams();
+        paramsLine.topMargin = tabHeight;
+
+        bottomLine.setBackgroundColor(bottomLineColor);
+
+
         mTabWrapperLayout = (LinearLayout) findViewById(R.id.tabViewWrapperLayout);
 
+        mTabWrapperLayout.setDividerDrawable(dividerDrawable);
         mTabWrapperLayout.getLayoutParams().height = tabHeight;
 
         listContentLayout = (FrameLayout) findViewById(R.id.listContentLayout);

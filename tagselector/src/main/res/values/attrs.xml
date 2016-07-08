@@ -3,8 +3,7 @@
     <declare-styleable name="TagSelectView">
         <attr name="tabHeight" format="dimension" />
         <attr name="tabBottomLineColor" format="color" />
-        <attr name="tabDividerColor" format="color" />
-        <attr name="tabDividerWidth" format="dimension" />
+        <attr name="tabDivider" format="reference" />
     </declare-styleable>
 
 </resources>

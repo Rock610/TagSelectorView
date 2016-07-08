@@ -8,6 +8,8 @@
         android:id="@+id/tabViewWrapperLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:divider="@drawable/vertical_line"
+        android:showDividers="middle"
         android:orientation="horizontal" />
 
     <FrameLayout
