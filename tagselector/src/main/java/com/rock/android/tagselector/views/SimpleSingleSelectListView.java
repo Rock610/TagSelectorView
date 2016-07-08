@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class SimpleSingleSelectListView extends ListView implements ITagSelector<DataBean> {
 
-    private List<DataBean> mList;
+//    private List<DataBean> mListData;
     private SelectorAdapter mAdapter;
 
     private ITagSelectorTabView tabView;
@@ -66,7 +66,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(tabView.isChangeTagAfterClicked()){
-                    tabView.setTag(mList.get(position).name);
+                    tabView.setTag(mAdapter.getData().get(position).name);
                 }
 
                 if(onItemClickListener != null){
@@ -81,7 +81,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
     @Override
     public void setData(@NonNull List<DataBean> list) {
 
-        mList = list;
+        setItemChecked(INVALID_POSITION,true);
         mAdapter.setData(list);
         mAdapter.notifyDataSetChanged();
 
@@ -94,21 +94,21 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
 
     @Override
     public List<DataBean> getData() {
-        return mList;
+        return mAdapter.getData();
     }
 
     @Override
     public String getCheckedName() {
 
         if (getCheckedItemPosition() != INVALID_POSITION) {
-            return mList.get(getCheckedItemPosition()).name;
+            return mAdapter.getData().get(getCheckedItemPosition()).name;
         }
         return "";
     }
 
     @Override
     public DataBean getDataByPosition(int position) {
-        return mList.get(position);
+        return mAdapter.getData().get(position);
     }
 
     @Override
@@ -167,7 +167,17 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
 
         @Override
         public void setData(List<DataBean> list) {
-            mList = list;
+            if(mList == null){
+                mList = list;
+            }else{
+                mList.clear();
+                mList.addAll(list);
+            }
+        }
+
+        @Override
+        public List<DataBean> getData() {
+            return mList;
         }
 
         @Override
