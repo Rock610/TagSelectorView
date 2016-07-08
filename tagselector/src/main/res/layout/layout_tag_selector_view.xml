@@ -14,15 +14,23 @@
         android:id="@+id/listContentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#99000000"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="50dp"
+        android:background="#99000000">
 
         <FrameLayout
             android:id="@+id/wrapperLayout"
             android:layout_width="match_parent"
-            android:background="@android:color/transparent"
-            android:layout_height="250dp" />
+            android:layout_height="250dp"
+            android:background="@android:color/transparent" />
 
     </FrameLayout>
+
+    <View
+        android:id="@+id/bottomLine"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#dedede"
+        android:layout_marginTop="50dp"
+        />
 
 </merge>

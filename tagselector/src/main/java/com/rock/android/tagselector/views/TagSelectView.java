@@ -1,6 +1,7 @@
 package com.rock.android.tagselector.views;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +34,8 @@ public class TagSelectView extends FrameLayout {
 
     private OnTagSelectedListener onTagSelectedListener;
 
+    protected int tabHeight;
+
     public TagSelectView setOnTagSelectedListener(OnTagSelectedListener onTagSelectedListener) {
         this.onTagSelectedListener = onTagSelectedListener;
         return this;
@@ -55,24 +58,38 @@ public class TagSelectView extends FrameLayout {
 
     public TagSelectView(Context context) {
         super(context);
-        init();
+        init(null);
     }
 
     public TagSelectView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
     public TagSelectView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
+
+        if(attrs != null){
+            TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs,R.styleable.TagSelectView,0,0);
+            tabHeight = a.getDimensionPixelSize(R.styleable.TagSelectView_tabHeight,0);
+
+            a.recycle();
+            System.out.println("tabHeight====>"+tabHeight);
+        }
+
         LayoutInflater.from(getContext()).inflate(R.layout.layout_tag_selector_view, this);
 
         mTabWrapperLayout = (LinearLayout) findViewById(R.id.tabViewWrapperLayout);
+
+        mTabWrapperLayout.getLayoutParams().height = tabHeight;
+
         listContentLayout = (FrameLayout) findViewById(R.id.listContentLayout);
+        FrameLayout.LayoutParams params = (LayoutParams) listContentLayout.getLayoutParams();
+        params.topMargin = tabHeight;
         wrapperLayout = (FrameLayout) findViewById(R.id.wrapperLayout);
 
         listContentLayout.setOnClickListener(new OnClickListener() {
