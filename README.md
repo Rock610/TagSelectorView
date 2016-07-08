@@ -35,7 +35,7 @@ dependencies {
 ```
 TagSelectView tagSelectView = (TagSelectView) findViewById(R.id.tagSelectView);
 
-List<Tags<DataBean>> dataList = new ArrayList<>();
+List<Tags> dataList = new ArrayList<>();
 
 int count = 2;
 List<DataBean> dataBeanList = new ArrayList<>();
@@ -43,12 +43,12 @@ for (int i = 0; i < count; i++) {
     dataBeanList.add(new MyDataBean("item A" + i));
 }
 
-dataList.add(new Tags<DataBean>().
+dataList.add(new Tags().
                 setDefaultTag(dataBeanList.get(0).name)
                 .setTags(dataBeanList)
                 .setChangeAfterClicked(true)
                 .setSelectFirst(false);
-
+tagSelectView.attach(dataList);
 ```
 data source must extend the DataBean
 - to insert a data to any tab
