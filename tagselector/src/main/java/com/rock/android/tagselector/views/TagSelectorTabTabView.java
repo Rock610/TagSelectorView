@@ -26,7 +26,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
     protected TextView mTextView;
     protected FrameLayout mWrapper;
-    protected ITagSelector mTagSelector;
     protected FrameLayout selectorParent;
 
     protected boolean isOpening;
@@ -150,7 +149,7 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
     private void afterClose() {
         isOpening = false;
-        mTagSelector.hide();
+        selectorView.hide();
         if (selectorParent != null && selectorParent.getVisibility() != View.GONE) {
             selectorParent.setVisibility(View.GONE);
         }
@@ -174,7 +173,7 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         TranslateAnimation ta = new TranslateAnimation(0, 0, -getAnimHeight(), 0);
         configAnim(ta);
         mWrapper.startAnimation(ta);
-        mTagSelector.show();
+        selectorView.show();
         isOpening = true;
         if (onStatusChangedListener != null) {
             onStatusChangedListener.opened(this);
@@ -182,8 +181,8 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
     }
 
     private int getAnimHeight() {
-        int itemHeight = mTagSelector.itemHeight();
-        return itemHeight * mTagSelector.getCount();
+        int itemHeight = selectorView.itemHeight();
+        return itemHeight * selectorView.getCount();
     }
 
     @Override
@@ -221,7 +220,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         FrameLayout.LayoutParams paramsList = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         wrapper.addView((View) selectorView, paramsList);
-        mTagSelector = selectorView;
         mTags = tags;
         selectorView.setData(tags.tags);
 
