@@ -26,6 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:tabHeight="40dp"
+        app:tabBottomLineColor="#ff0000"
+        app:tabDivider="@drawable/shape_line"
         />
 
 
