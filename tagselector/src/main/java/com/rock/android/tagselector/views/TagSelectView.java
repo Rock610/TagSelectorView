@@ -192,10 +192,12 @@ public class TagSelectView extends FrameLayout {
     }
 
     public void dismissAll(){
-        lastOpenedTab.close();
+        if(lastOpenedTab != null){
+            lastOpenedTab.close();
+        }
     }
 
     public boolean isShowing(){
-        return lastOpenedTab.isOpening();
+        return lastOpenedTab != null && lastOpenedTab.isOpening();
     }
 }
