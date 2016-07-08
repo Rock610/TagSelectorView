@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 MyDataBean d = (MyDataBean) dataBean;
                 Log.e("onTagSelected", "data name===" + d.name);
 
+                DataBean dataBean1 = (DataBean) tagSelectView.getTabView(tabPosition).getTagSelectorView().getData().get(selectorListPosition);
+                Log.e("onTagSelected", "data1 name===" + dataBean1.name);
                 //do something like request the network
 
             }
@@ -118,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickAddData(View v){
         //insert a data
-        tagSelectorView.getData().add(0, new MyDataBean("im new"));
-        tagSelectorView.refresh();
+        tagSelectView.getTabView(1).getTagSelectorView().getData().add(0, new MyDataBean("im new"));
+        tagSelectView.getTabView(1).getTagSelectorView().refresh();
+
     }
 }

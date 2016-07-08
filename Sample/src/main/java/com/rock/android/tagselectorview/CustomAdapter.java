@@ -56,6 +56,11 @@ public class CustomAdapter extends BaseAdapter implements SelectorAdapter{
     }
 
     @Override
+    public List<DataBean> getData() {
+        return dataBeen;
+    }
+
+    @Override
     public int getItemHeight() {
         return Utils.dp2px(ctx,40);
     }
