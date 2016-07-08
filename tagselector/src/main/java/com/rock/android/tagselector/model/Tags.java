@@ -38,7 +38,7 @@ public class Tags {
         return this;
     }
 
-    public Tags setTags(List<DataBean> tags) {
+    public Tags setTags(List<? extends DataBean> tags) {
         this.tags = tags;
         return this;
     }
