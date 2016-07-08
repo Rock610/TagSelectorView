@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.rock.android.tagselector.R;
 import com.rock.android.tagselector.Utils;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
@@ -56,6 +57,8 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
 
         setBackgroundColor(Color.WHITE);
         setChoiceMode(CHOICE_MODE_SINGLE);
+        setDividerHeight(1);
+        setDivider(getResources().getDrawable(R.drawable.horizontal_line));
         mAdapter = new SimpleAdapter((Activity) getContext());
         setAdapter((SimpleAdapter) mAdapter);
 

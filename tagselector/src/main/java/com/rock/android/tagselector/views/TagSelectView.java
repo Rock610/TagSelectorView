@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +83,6 @@ public class TagSelectView extends FrameLayout {
             bottomLineColor = a.getColor(R.styleable.TagSelectView_tabBottomLineColor,getResources().getColor(R.color.lineColor));
             dividerDrawable = a.getDrawable(R.styleable.TagSelectView_tabDivider);
             a.recycle();
-            System.out.println("tabHeight====>"+tabHeight);
         }
 
         LayoutInflater.from(getContext()).inflate(R.layout.layout_tag_selector_view, this);
@@ -142,12 +140,10 @@ public class TagSelectView extends FrameLayout {
         tabView.setOnStatusChangedListener(new ITagSelectorTabView.OnStatusChangedListener() {
             @Override
             public void willDismiss(ITagSelectorTabView view) {
-                Log.e(view.getTextView().getText().toString(),"will dismiss");
             }
 
             @Override
             public void dismissed(ITagSelectorTabView view) {
-                Log.e(view.getTextView().getText().toString(),"dismissed");
                 if(onTagViewStatusChangedListener != null){
                     onTagViewStatusChangedListener.onClosed(view);
                 }
@@ -158,7 +154,6 @@ public class TagSelectView extends FrameLayout {
             @Override
             public void willOpen(ITagSelectorTabView view) {
 
-                Log.e(view.getTextView().getText().toString(),"will open");
                 if(lastOpenedTab != null && lastOpenedTab != view){
                     lastOpenedTab.close(false);
                 }
@@ -168,7 +163,6 @@ public class TagSelectView extends FrameLayout {
             @Override
             public void opened(ITagSelectorTabView view) {
                 lastOpenedTab = view;
-                Log.e(view.getTextView().getText().toString(),"opened");
                 if(onTagViewStatusChangedListener != null){
                     onTagViewStatusChangedListener.onOpened(view);
                 }
@@ -199,5 +193,9 @@ public class TagSelectView extends FrameLayout {
 
     public void dismissAll(){
         lastOpenedTab.close();
+    }
+
+    public boolean isShowing(){
+        return lastOpenedTab.isOpening();
     }
 }

@@ -10,6 +10,7 @@
         android:layout_height="50dp"
         android:divider="@drawable/vertical_line"
         android:showDividers="middle"
+        android:background="@android:color/white"
         android:orientation="horizontal" />
 
     <FrameLayout
