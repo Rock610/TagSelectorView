@@ -11,5 +11,8 @@ public class DataBean {
         this.name = name;
     }
 
+    public DataBean() {
+    }
+
     public String name;
 }

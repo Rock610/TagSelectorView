@@ -196,4 +196,8 @@ public class TagSelectView extends FrameLayout {
     public ITagSelectorTabView getTabView(int position) {
         return mTabSelectViews.get(position);
     }
+
+    public void dismissAll(){
+        lastOpenedTab.close();
+    }
 }
