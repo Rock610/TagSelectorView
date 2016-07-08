@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TagSelectView">
+        <attr name="tabHeight" format="dimension" />
+        <attr name="tabBottomLineColor" format="color" />
+        <attr name="tabDividerColor" format="color" />
+        <attr name="tabDividerWidth" format="dimension" />
+    </declare-styleable>
+
+</resources>
