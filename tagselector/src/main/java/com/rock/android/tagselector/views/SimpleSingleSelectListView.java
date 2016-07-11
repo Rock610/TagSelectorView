@@ -94,7 +94,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
 
     @Override
     public List<DataBean> getData() {
-        return mAdapter.getData();
+        return (List<DataBean>) mAdapter.getData();
     }
 
     @Override
@@ -166,9 +166,9 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
         }
 
         @Override
-        public void setData(List<DataBean> list) {
+        public void setData(List<? extends DataBean> list) {
             if(mList == null){
-                mList = list;
+                mList = (List<DataBean>) list;
             }else{
                 mList.clear();
                 mList.addAll(list);

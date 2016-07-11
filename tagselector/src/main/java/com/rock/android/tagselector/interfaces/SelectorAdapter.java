@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface SelectorAdapter {
 
-    void setData(List<DataBean> list);
+    void setData(List<? extends DataBean> list);
 
-    List<DataBean> getData();
+    List<? extends DataBean> getData();
 
     void notifyDataSetChanged();
 
