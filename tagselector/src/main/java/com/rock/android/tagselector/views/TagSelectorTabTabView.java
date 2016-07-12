@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -181,8 +182,14 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
     }
 
     private int getAnimHeight() {
-        int itemHeight = selectorView.itemHeight();
-        return itemHeight * selectorView.getCount();
+        int height;
+        if(selectorView.getAnimHeight() > 0){
+            height = selectorView.getAnimHeight();
+        }else{
+            height = selectorView.itemHeight() * selectorView.getCount();
+        }
+
+        return height;
     }
 
     @Override
@@ -196,7 +203,8 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
     private TranslateAnimation configAnim(TranslateAnimation ta) {
         ta.setInterpolator(new AccelerateDecelerateInterpolator());
-        ta.setDuration(200);
+        ta.setDuration(250);
+        ta.setInterpolator(new DecelerateInterpolator());
         return ta;
     }
 

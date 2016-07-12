@@ -25,7 +25,14 @@ public interface ITagSelector<T> {
 
     int selectedPosition();
 
+    /**
+     * item的高度，默认以itemHeight*itemCount 为动画行驶的高度
+     * */
     int itemHeight();
+    /**
+     * 自定义动画行驶的高度
+     * */
+    int getAnimHeight();
 
     int getCount();
 

@@ -122,6 +122,11 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
     }
 
     @Override
+    public int getAnimHeight() {
+        return 0;
+    }
+
+    @Override
     public void show() {
         setVisibility(View.VISIBLE);
     }
