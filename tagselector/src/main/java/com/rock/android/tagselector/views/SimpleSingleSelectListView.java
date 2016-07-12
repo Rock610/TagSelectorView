@@ -12,7 +12,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.rock.android.tagselector.R;
-import com.rock.android.tagselector.Utils;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
 import com.rock.android.tagselector.interfaces.SelectorAdapter;
@@ -123,7 +122,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
 
     @Override
     public int getAnimHeight() {
-        return 0;
+        return 250;
     }
 
     @Override
@@ -187,7 +186,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
 
         @Override
         public int getItemHeight() {
-            return Utils.dp2px(getContext(),50);
+            return 50;
         }
     }
 

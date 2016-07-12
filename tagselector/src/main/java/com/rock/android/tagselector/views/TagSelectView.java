@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.rock.android.tagselector.R;
+import com.rock.android.tagselector.Utils;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
 import com.rock.android.tagselector.model.Tags;
@@ -23,6 +24,7 @@ import java.util.List;
  */
 public class TagSelectView extends FrameLayout {
 
+    public static final int DEFAULT_WRAPPER_HEIGHT = 250;//默认wrapper高度
     private LinearLayout mTabWrapperLayout;
     private FrameLayout listContentLayout;
     private FrameLayout wrapperLayout;
@@ -39,6 +41,8 @@ public class TagSelectView extends FrameLayout {
     protected int bottomLineColor;
 
     protected Drawable dividerDrawable;
+
+    protected int wrapperHeight;
 
     public TagSelectView setOnTagSelectedListener(OnTagSelectedListener onTagSelectedListener) {
         this.onTagSelectedListener = onTagSelectedListener;
@@ -82,6 +86,7 @@ public class TagSelectView extends FrameLayout {
             tabHeight = a.getDimensionPixelSize(R.styleable.TagSelectView_tabHeight,0);
             bottomLineColor = a.getColor(R.styleable.TagSelectView_tabBottomLineColor,getResources().getColor(R.color.lineColor));
             dividerDrawable = a.getDrawable(R.styleable.TagSelectView_tabDivider);
+            wrapperHeight = a.getDimensionPixelSize(R.styleable.TagSelectView_wrapperHeight, Utils.dp2px(getContext(),DEFAULT_WRAPPER_HEIGHT));
             a.recycle();
         }
 
@@ -103,6 +108,7 @@ public class TagSelectView extends FrameLayout {
         FrameLayout.LayoutParams params = (LayoutParams) listContentLayout.getLayoutParams();
         params.topMargin = tabHeight;
         wrapperLayout = (FrameLayout) findViewById(R.id.wrapperLayout);
+        wrapperLayout.getLayoutParams().height = wrapperHeight;
 
         listContentLayout.setOnClickListener(new OnClickListener() {
             @Override

@@ -7,7 +7,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
@@ -16,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rock.android.tagselector.R;
+import com.rock.android.tagselector.Utils;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
 import com.rock.android.tagselector.model.Tags;
@@ -38,6 +38,7 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
     private View contentView;
     private ITagSelector selectorView;
+    private int wrapperHeight;
 
     @Override
     public void setOnViewClickListener(OnViewClickListener onViewClickListener) {
@@ -57,6 +58,11 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
     @Override
     public ITagSelector getTagSelectorView() {
         return selectorView;
+    }
+
+    @Override
+    public void setWrapperHeight(int height) {
+        wrapperHeight = height;
     }
 
     public TagSelectorTabTabView(Context context) {
@@ -184,10 +190,17 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
     private int getAnimHeight() {
         int height;
         if(selectorView.getAnimHeight() > 0){
-            height = selectorView.getAnimHeight();
+            height = Utils.dp2px(getContext(),selectorView.getAnimHeight());
+            System.out.println("custom height");
         }else{
-            height = selectorView.itemHeight() * selectorView.getCount();
+            height = Utils.dp2px(getContext(),selectorView.itemHeight()) * selectorView.getCount();
+            System.out.println("item height");
         }
+
+        int max = wrapperHeight > 0? wrapperHeight : Utils.dp2px(getContext(),TagSelectView.DEFAULT_WRAPPER_HEIGHT);
+        height = height > max ? max:height;
+
+        System.out.println("anim height===>"+height);
 
         return height;
     }
@@ -202,7 +215,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
     }
 
     private TranslateAnimation configAnim(TranslateAnimation ta) {
-        ta.setInterpolator(new AccelerateDecelerateInterpolator());
         ta.setDuration(250);
         ta.setInterpolator(new DecelerateInterpolator());
         return ta;

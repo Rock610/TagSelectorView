@@ -4,6 +4,7 @@
         <attr name="tabHeight" format="dimension" />
         <attr name="tabBottomLineColor" format="color" />
         <attr name="tabDivider" format="reference" />
+        <attr name="wrapperHeight" format="dimension"/>
     </declare-styleable>
 
 </resources>
