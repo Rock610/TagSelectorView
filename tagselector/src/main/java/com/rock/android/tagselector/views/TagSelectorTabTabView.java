@@ -2,7 +2,6 @@ package com.rock.android.tagselector.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.rock.android.tagselector.LogUtil;
 import com.rock.android.tagselector.R;
 import com.rock.android.tagselector.Utils;
 import com.rock.android.tagselector.interfaces.ITagSelector;
@@ -86,7 +86,7 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(getTagText(), "clicked");
+                LogUtil.e(getTagText(), "clicked");
                 toggle();
 
                 if (onViewClickListener != null) {
@@ -191,16 +191,13 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         int height;
         if(selectorView.getAnimHeight() > 0){
             height = Utils.dp2px(getContext(),selectorView.getAnimHeight());
-            System.out.println("custom height");
         }else{
             height = Utils.dp2px(getContext(),selectorView.itemHeight()) * selectorView.getCount();
-            System.out.println("item height");
         }
 
         int max = wrapperHeight > 0? wrapperHeight : Utils.dp2px(getContext(),TagSelectView.DEFAULT_WRAPPER_HEIGHT);
         height = height > max ? max:height;
 
-        System.out.println("anim height===>"+height);
 
         return height;
     }

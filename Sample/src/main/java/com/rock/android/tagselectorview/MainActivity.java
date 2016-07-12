@@ -3,10 +3,10 @@ package com.rock.android.tagselectorview;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.rock.android.tagselector.LogUtil;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
 import com.rock.android.tagselector.model.DataBean;
@@ -56,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
         tagSelectView.setOnTagSelectedListener(new TagSelectView.OnTagSelectedListener() {
             @Override
             public void onTagSelected(int selectorListPosition, int tabPosition) {
-                Log.e("onTagSelected", "selected==" + selectorListPosition + "===tab===" + tabPosition);
+                LogUtil.e("onTagSelected", "selected==" + selectorListPosition + "===tab===" + tabPosition);
 
                 DataBean dataBean = dataList.get(tabPosition).tags.get(selectorListPosition);
                 MyDataBean d = (MyDataBean) dataBean;
-                Log.e("onTagSelected", "data name===" + d.name);
+                LogUtil.e("onTagSelected", "data name===" + d.name);
 
                 DataBean dataBean1 = (DataBean) tagSelectView.getTabView(tabPosition).getTagSelectorView().getData().get(selectorListPosition);
-                Log.e("onTagSelected", "data1 name===" + dataBean1.name);
+                LogUtil.e("onTagSelected", "data1 name===" + dataBean1.name);
                 //do something like request the network
 
             }

@@ -44,6 +44,8 @@ public class TagSelectView extends FrameLayout {
 
     protected int wrapperHeight;
 
+    protected int tabTextColor;
+
     public TagSelectView setOnTagSelectedListener(OnTagSelectedListener onTagSelectedListener) {
         this.onTagSelectedListener = onTagSelectedListener;
         return this;
@@ -87,6 +89,7 @@ public class TagSelectView extends FrameLayout {
             bottomLineColor = a.getColor(R.styleable.TagSelectView_tabBottomLineColor,getResources().getColor(R.color.lineColor));
             dividerDrawable = a.getDrawable(R.styleable.TagSelectView_tabDivider);
             wrapperHeight = a.getDimensionPixelSize(R.styleable.TagSelectView_wrapperHeight, Utils.dp2px(getContext(),DEFAULT_WRAPPER_HEIGHT));
+            tabTextColor = a.getColor(R.styleable.TagSelectView_tabTextColor,getResources().getColor(R.color.tabTextColor));
             a.recycle();
         }
 
@@ -142,6 +145,7 @@ public class TagSelectView extends FrameLayout {
         }else{
             tabView.setup(tags, listContentLayout, wrapperLayout);
         }
+        tabView.getTextView().setTextColor(tabTextColor);
 
         tabView.setOnStatusChangedListener(new ITagSelectorTabView.OnStatusChangedListener() {
             @Override
