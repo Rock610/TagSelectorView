@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.rock.android:tagselector:1.1.5'
+    compile 'com.rock.android:tagselector:1.2.1'
 }
 ```
 
