@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
@@ -126,26 +127,12 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
             return;
         }
 
-        TranslateAnimation ta = new TranslateAnimation(0, 0, 0, -getAnimHeight());
-
-        configAnim(ta);
-        ta.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
+//        TranslateAnimation ta = new TranslateAnimation(0, 0, 0, -getAnimHeight());
+        Animation ta = AnimationUtils.loadAnimation(getContext(), R.anim.ts_content_out);
+//        configAnim(ta);
         mWrapper.startAnimation(ta);
 
+        //代替动画监听，因为有时会不响应listener
         postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -177,8 +164,10 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         if (selectorParent != null && selectorParent.getVisibility() != View.VISIBLE) {
             selectorParent.setVisibility(View.VISIBLE);
         }
-        TranslateAnimation ta = new TranslateAnimation(0, 0, -getAnimHeight(), 0);
-        configAnim(ta);
+//        TranslateAnimation ta = new TranslateAnimation(0, 0, -getAnimHeight(), 0);
+//        configAnim(ta);
+
+        Animation ta = AnimationUtils.loadAnimation(getContext(), R.anim.ts_content_in);
         mWrapper.startAnimation(ta);
         selectorView.show();
         isOpening = true;

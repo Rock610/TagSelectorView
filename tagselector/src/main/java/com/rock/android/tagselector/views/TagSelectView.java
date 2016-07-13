@@ -244,4 +244,5 @@ public class TagSelectView extends FrameLayout {
     public boolean isShowing(){
         return lastOpenedTab != null && lastOpenedTab.isOpening();
     }
+
 }

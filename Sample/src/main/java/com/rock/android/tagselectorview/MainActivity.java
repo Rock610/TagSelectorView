@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.rock.android.tagselector.LogUtil;
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         dataList.add(new Tags(dataBeanList2, dataBeanList2.get(0).name, false, true));
 
         tagSelectView.attach(dataList);
+        tagSelectView.setWrapperHeight(FrameLayout.LayoutParams.MATCH_PARENT);
 
         //pass a custom adapter to a selector
         tagSelectorView = tagSelectView.getTabView(0).getTagSelectorView();
