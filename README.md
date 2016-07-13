@@ -3,6 +3,7 @@ TagSelectorView
 
 A tag selector with animation
 
+[![download](https://api.bintray.com/packages/rock610/maven/tagselector/images/download.svg)](https://bintray.com/rock610/maven/tagselector/_latestVersion)
 
 ![gif](https://github.com/Rock610/TagSelectorView/blob/master/gif/gif2.gif)
 
@@ -15,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.rock.android:tagselector:1.2.1'
+    compile 'com.rock.android:tagselector:xxx'//版本号
 }
 ```
 
