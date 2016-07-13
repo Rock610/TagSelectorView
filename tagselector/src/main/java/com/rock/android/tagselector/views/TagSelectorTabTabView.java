@@ -8,15 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rock.android.tagselector.LogUtil;
 import com.rock.android.tagselector.R;
-import com.rock.android.tagselector.Utils;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
 import com.rock.android.tagselector.model.Tags;
@@ -39,7 +36,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
     private View contentView;
     private ITagSelector selectorView;
-    private int wrapperHeight;
 
     @Override
     public void setOnViewClickListener(OnViewClickListener onViewClickListener) {
@@ -59,11 +55,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
     @Override
     public ITagSelector getTagSelectorView() {
         return selectorView;
-    }
-
-    @Override
-    public void setWrapperHeight(int height) {
-        wrapperHeight = height;
     }
 
     public TagSelectorTabTabView(Context context) {
@@ -127,9 +118,7 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
             return;
         }
 
-//        TranslateAnimation ta = new TranslateAnimation(0, 0, 0, -getAnimHeight());
         Animation ta = AnimationUtils.loadAnimation(getContext(), R.anim.ts_content_out);
-//        configAnim(ta);
         mWrapper.startAnimation(ta);
 
         //代替动画监听，因为有时会不响应listener
@@ -164,9 +153,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         if (selectorParent != null && selectorParent.getVisibility() != View.VISIBLE) {
             selectorParent.setVisibility(View.VISIBLE);
         }
-//        TranslateAnimation ta = new TranslateAnimation(0, 0, -getAnimHeight(), 0);
-//        configAnim(ta);
-
         Animation ta = AnimationUtils.loadAnimation(getContext(), R.anim.ts_content_in);
         mWrapper.startAnimation(ta);
         selectorView.show();
@@ -176,21 +162,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         }
     }
 
-    private int getAnimHeight() {
-        int height;
-        if(selectorView.getAnimHeight() > 0){
-            height = Utils.dp2px(getContext(),selectorView.getAnimHeight());
-        }else{
-            height = Utils.dp2px(getContext(),selectorView.itemHeight()) * selectorView.getCount();
-        }
-
-        int max = wrapperHeight > 0? wrapperHeight : Utils.dp2px(getContext(),TagSelectView.DEFAULT_WRAPPER_HEIGHT);
-        height = height > max ? max:height;
-
-
-        return height;
-    }
-
     @Override
     public void toggle() {
         if (isOpening) {
@@ -198,12 +169,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         } else {
             open();
         }
-    }
-
-    private TranslateAnimation configAnim(TranslateAnimation ta) {
-        ta.setDuration(250);
-        ta.setInterpolator(new DecelerateInterpolator());
-        return ta;
     }
 
     @Override

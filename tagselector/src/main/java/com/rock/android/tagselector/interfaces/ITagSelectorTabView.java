@@ -50,5 +50,4 @@ public interface ITagSelectorTabView {
 
     ITagSelector getTagSelectorView();
 
-    void setWrapperHeight(int height);
 }
