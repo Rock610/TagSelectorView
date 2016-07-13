@@ -45,6 +45,7 @@ public class TagSelectView extends FrameLayout {
     protected int wrapperHeight;
 
     protected int tabTextColor;
+    private View bottomLine;
 
     public TagSelectView setOnTagSelectedListener(OnTagSelectedListener onTagSelectedListener) {
         this.onTagSelectedListener = onTagSelectedListener;
@@ -89,29 +90,29 @@ public class TagSelectView extends FrameLayout {
             bottomLineColor = a.getColor(R.styleable.TagSelectView_tabBottomLineColor,getResources().getColor(R.color.lineColor));
             dividerDrawable = a.getDrawable(R.styleable.TagSelectView_tabDivider);
             wrapperHeight = a.getDimensionPixelSize(R.styleable.TagSelectView_wrapperHeight, Utils.dp2px(getContext(),DEFAULT_WRAPPER_HEIGHT));
-            tabTextColor = a.getColor(R.styleable.TagSelectView_tabTextColor,getResources().getColor(R.color.tabTextColor));
+            tabTextColor = a.getColor(R.styleable.TagSelectView_selectorTabTextColor,getResources().getColor(R.color.defaultTabTextColor));
             a.recycle();
         }
 
         LayoutInflater.from(getContext()).inflate(R.layout.layout_tag_selector_view, this);
 
-        View bottomLine = findViewById(R.id.bottomLine);
+        bottomLine = findViewById(R.id.bottomLine);
         FrameLayout.LayoutParams paramsLine = (LayoutParams) bottomLine.getLayoutParams();
         paramsLine.topMargin = tabHeight;
 
-        bottomLine.setBackgroundColor(bottomLineColor);
+        setBottomLineColor(bottomLineColor);
 
 
         mTabWrapperLayout = (LinearLayout) findViewById(R.id.tabViewWrapperLayout);
 
-        mTabWrapperLayout.setDividerDrawable(dividerDrawable);
+        setDividerDrawable(dividerDrawable);
         mTabWrapperLayout.getLayoutParams().height = tabHeight;
 
         listContentLayout = (FrameLayout) findViewById(R.id.listContentLayout);
-        FrameLayout.LayoutParams params = (LayoutParams) listContentLayout.getLayoutParams();
-        params.topMargin = tabHeight;
+        setTabHeight(tabHeight);
+
         wrapperLayout = (FrameLayout) findViewById(R.id.wrapperLayout);
-        wrapperLayout.getLayoutParams().height = wrapperHeight;
+        setWrapperHeight(wrapperHeight);
 
         listContentLayout.setOnClickListener(new OnClickListener() {
             @Override
@@ -124,6 +125,39 @@ public class TagSelectView extends FrameLayout {
 
         listContentLayout.setVisibility(View.GONE);
 
+    }
+
+    public TagSelectView setTabHeight(int tabHeight) {
+        this.tabHeight = tabHeight;
+        FrameLayout.LayoutParams params = (LayoutParams) listContentLayout.getLayoutParams();
+        params.topMargin = tabHeight;
+        return this;
+    }
+
+    public TagSelectView setBottomLineColor(int bottomLineColor) {
+        this.bottomLineColor = bottomLineColor;
+        bottomLine.setBackgroundColor(bottomLineColor);
+        return this;
+    }
+
+    public TagSelectView setDividerDrawable(Drawable dividerDrawable) {
+        this.dividerDrawable = dividerDrawable;
+        mTabWrapperLayout.setDividerDrawable(dividerDrawable);
+        return this;
+    }
+
+    public TagSelectView setWrapperHeight(int wrapperHeight) {
+        this.wrapperHeight = wrapperHeight;
+        wrapperLayout.getLayoutParams().height = wrapperHeight;
+        return this;
+    }
+
+    public TagSelectView setTabTextColor(int tabTextColor) {
+        this.tabTextColor = tabTextColor;
+        for (ITagSelectorTabView mTabSelectView : mTabSelectViews) {
+            mTabSelectView.getTextView().setTextColor(tabTextColor);
+        }
+        return this;
     }
 
     public void attach(List<Tags> tagsList) {

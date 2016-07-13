@@ -5,7 +5,7 @@
         <attr name="tabBottomLineColor" format="color" />
         <attr name="tabDivider" format="reference" />
         <attr name="wrapperHeight" format="dimension"/>
-        <attr name="tabTextColor" format="color" />
+        <attr name="selectorTabTextColor" format="color" />
     </declare-styleable>
 
 </resources>

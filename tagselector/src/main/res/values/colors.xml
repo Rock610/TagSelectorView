@@ -6,5 +6,5 @@
 
     <color name="lineColor">#dedede</color>
 
-    <color name="tabTextColor">#333333</color>
+    <color name="defaultTabTextColor">#333333</color>
 </resources>
