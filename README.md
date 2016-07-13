@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.rock.android:tagselector:xxx'//版本号
+    compile 'com.rock.android:tagselector:xxx'//version code
 }
 ```
 
