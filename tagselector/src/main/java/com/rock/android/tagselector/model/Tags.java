@@ -2,13 +2,15 @@ package com.rock.android.tagselector.model;
 
 import com.rock.android.tagselector.interfaces.ITagSelector;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by rock on 16/7/4.
  */
-public class Tags {
+public class Tags implements Serializable{
 
+    private static final long serialVersionUID = -1371154113061363482L;
     public List<? extends DataBean> tags;
 
     public String defaultTag;
