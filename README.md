@@ -7,7 +7,7 @@ A tag selector with animation
 [![blog](https://img.shields.io/badge/blog-%E7%AE%80%E4%B9%A6-blue.svg)](http://www.jianshu.com/users/55ddc6ee39e8/latest_articles)
 
 
-be free to contact me by the blog above or [email](wang1ran@163.com)
+be free to contact me by the blog above or email _wang1ran@163.com_
 
 
 ![gif](https://github.com/Rock610/TagSelectorView/blob/master/gif/gif2.gif)
