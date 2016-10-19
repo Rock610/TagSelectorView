@@ -12,8 +12,6 @@ be free to contact me by the blog above or email _wang1ran@163.com_
 
 ![gif](https://github.com/Rock610/TagSelectorView/blob/master/gif/gif2.gif)
 
-#### 2.0目前暂时未提交到jcenter,先上源码,稍后会提交.
-
 
 
 # Setup
@@ -80,8 +78,39 @@ dataList = new ArrayList<>();
         tagSelectView.setAdapter(tagSelectorAdapter);
         tagSelectView.setWrapperHeight(FrameLayout.LayoutParams.MATCH_PARENT);
 ```
+
+- com.rock.android.tagselector.interfaces.BaseAdapter
+
+> ITagSelector接口用来定义每个tab所弹出的view, 并且在你的Adapter的```getDropDownView()```方法的中返回,鼓励自定义实现ITagSelector接口，如果你比较懒，库中已经帮你定义了一个基本的单选list```SimpleSingleSelectListView```,就像1.2.2.3的一样。
+
+```
+public interface BaseAdapter {
+
+    //tab的个数
+    int getCount();
+
+    /**
+     * 注意 此View 中必须包含一个id 为theTextView的TextView
+     * */
+    View getTabView(int position);
+
+    ITagSelector getDropDownView(int position);
+
+    Object getItem(int tabPosition,int selectorPosition);
+
+    boolean getChangeAfterClicked(int tabPosition);
+
+    String getTagName(int tabPosition,int selectorPosition);
+}
+
+```
+
 ~~data source must extend the DataBean~~
-现在不需要强行继承DataBean,把宝贵的单继承留给使用者
+
+> 由于ITagSelector不再定义数据结构,所以现在不需要强行继承DataBean,把宝贵的单继承留给使用者.
+因此你需要自行为ItagSelector定义数据结构,无论是在ItagSelector的实现类还是BaseAdapter中(ItagSelector提供了```getListAdapter()```方法)都可以随心所欲定义数据.
+ps:如果你比较懒，也可以直接使用```DataBean```类
+
 
 - 为某一个tab下的view添加一条数据
 ```
