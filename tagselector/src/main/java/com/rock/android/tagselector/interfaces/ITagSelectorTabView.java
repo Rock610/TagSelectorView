@@ -4,8 +4,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.rock.android.tagselector.model.Tags;
-
 /**
  * Created by rock on 16/7/4.
  */
@@ -32,9 +30,9 @@ public interface ITagSelectorTabView {
 
     void toggle();
 
-    void setup(Tags tags, FrameLayout selectorParent, FrameLayout wrapper);
+    void setup(FrameLayout selectorParent, FrameLayout wrapper,ITagSelector selectorView,View tabView);
 
-    void setup(Tags tags, FrameLayout selectorParent, FrameLayout wrapper,ITagSelector selectorView);
+    void setChangeAfterClick(boolean b);
 
     TextView getTextView();
 

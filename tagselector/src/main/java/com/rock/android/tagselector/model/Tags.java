@@ -1,7 +1,5 @@
 package com.rock.android.tagselector.model;
 
-import com.rock.android.tagselector.interfaces.ITagSelector;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,62 +9,18 @@ import java.util.List;
 public class Tags implements Serializable{
 
     private static final long serialVersionUID = -1371154113061363482L;
-    public List<? extends DataBean> tags;
+    public List<DataBean> tags;
 
-    public String defaultTag;
-
-    public boolean isSelectFirst;
-
-    public boolean isChangeAfterClicked;
-
-    public int layoutRes;
-
-    public int textViewId;
-
-    public ITagSelector selector;
-
-    public Tags(List<? extends DataBean> tags, String defaultTag, boolean isSelectFirst, boolean isChangeAfterClicked) {
+    public Tags(List<DataBean> tags) {
         this.tags = tags;
-        this.defaultTag = defaultTag;
-        this.isSelectFirst = isSelectFirst;
-        this.isChangeAfterClicked = isChangeAfterClicked;
     }
 
     public Tags() {
     }
 
-    public Tags setSelector(ITagSelector selector) {
-        this.selector = selector;
-        return this;
-    }
 
-    public Tags setTags(List<? extends DataBean> tags) {
+    public Tags setTags(List<DataBean> tags) {
         this.tags = tags;
-        return this;
-    }
-
-    public Tags setDefaultTag(String defaultTag) {
-        this.defaultTag = defaultTag;
-        return this;
-    }
-
-    public Tags setSelectFirst(boolean selectFirst) {
-        isSelectFirst = selectFirst;
-        return this;
-    }
-
-    public Tags setChangeAfterClicked(boolean changeAfterClicked) {
-        isChangeAfterClicked = changeAfterClicked;
-        return this;
-    }
-
-    public Tags setLayoutRes(int layoutRes) {
-        this.layoutRes = layoutRes;
-        return this;
-    }
-
-    public Tags setTextViewId(int textViewId) {
-        this.textViewId = textViewId;
         return this;
     }
 }

@@ -1,27 +1,21 @@
 package com.rock.android.tagselector.interfaces;
 
-import java.util.List;
+import android.view.View;
 
 /**
  * Created by rock on 16/7/4.
  */
-public interface ITagSelector<T> {
+public interface ITagSelector {
 
     interface OnItemClickListener{
         void onItemClick(int position);
     }
 
-    void setData(List<T> list);
-
     void refresh();
-
-    List<T> getData();
 
     String getCheckedName();
 
     void setOnItemClickListener(OnItemClickListener listener);
-
-    T getDataByPosition(int position);
 
     int selectedPosition();
 
@@ -42,6 +36,18 @@ public interface ITagSelector<T> {
 
     void setTabView(ITagSelectorTabView view);
 
+    Object getCurrentItem(int position);
 
-    void setListAdapter(SelectorAdapter adapter);
+    void insert(int position,Object o);
+
+    void remove(int position);
+
+    void update(int position,Object o);
+
+    View getAdapterView();
+
+    void setDefaultItem(int position);
+
+    android.widget.BaseAdapter getListAdapter();
+
 }

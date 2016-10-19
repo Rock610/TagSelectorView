@@ -2,8 +2,6 @@ package com.rock.android.tagselector.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -12,7 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.rock.android.tagselector.LogUtil;
 import com.rock.android.tagselector.R;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
@@ -36,6 +33,7 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
     private View contentView;
     private ITagSelector selectorView;
+    private boolean isChangeAfterClicked;
 
     @Override
     public void setOnViewClickListener(OnViewClickListener onViewClickListener) {
@@ -78,7 +76,6 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogUtil.e(getTagText(), "clicked");
                 toggle();
 
                 if (onViewClickListener != null) {
@@ -172,36 +169,40 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
     }
 
     @Override
-    public void setup(Tags tags, FrameLayout selectorParent, FrameLayout wrapper) {
-        setup(tags,selectorParent,wrapper,null);
-    }
-
-    @Override
-    public void setup(Tags tags, FrameLayout selectorParent, FrameLayout wrapper,ITagSelector selectorView){
-
+    public void setup(FrameLayout selectorParent, FrameLayout wrapper, ITagSelector selectorView, View tabView) {
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         try {
-            View view = newTagView(tags.layoutRes, tags.textViewId);
-            contentView = view;
-            addView(view, params);
+            contentView = tabView;
+            View text = tabView.findViewById(R.id.theTextView);
+            if(text != null){
+                mTextView = (TextView) text;
+            }else{
+                throw new RuntimeException("you must set the id of the textView  as \"theTextView\"");
+            }
+
+            addView(tabView, params);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         mWrapper = wrapper;
         this.selectorParent = selectorParent;
-        mTags = tags;
         if(selectorView != null){
             this.selectorView = selectorView;
-            wrapper.addView((View) selectorView);
+            FrameLayout.LayoutParams paramsList = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            wrapper.addView((View) selectorView,paramsList);
         }else{
-           setDefaultSelector(wrapper);
+            setDefaultSelector(wrapper);
         }
 
         this.selectorView.setTabView(this);
-        this.selectorView.setData(tags.tags);
-        setTag(tags.defaultTag);
+    }
 
+
+    @Override
+    public void setChangeAfterClick(boolean b) {
+        isChangeAfterClicked = b;
     }
 
     private void setDefaultSelector(FrameLayout wrapper){
@@ -225,38 +226,38 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
     @Override
     public boolean isChangeTagAfterClicked() {
-        return mTags.isChangeAfterClicked;
+        return isChangeAfterClicked;
     }
 
-    /**
-     * 包装一个内部view,这里直接以TextView为例
-     * 必须给mTextView赋值
-     */
-    protected View newTagView (int res,int textViewid) throws Exception {
-        if(res != 0){
-            View view = LayoutInflater.from(getContext()).inflate(res,null);
-            if(view == null){
-                throw new RuntimeException("can not inflate view by id==="+res);
-            }
-            if(textViewid != 0){
-                mTextView = (TextView) view.findViewById(textViewid);
-            }
-
-            if(mTextView == null){
-                throw new RuntimeException("can not find TextView by id==="+textViewid);
-            }
-            return view;
-        }
-
-        RelativeLayout layout = new RelativeLayout(getContext());
-        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-        TextView tv = new TextView(getContext());
-        mTextView = tv;
-        tv.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.arrow_bottom,0);
-        tv.setGravity(Gravity.CENTER);
-
-        layout.addView(tv,params);
-        return layout;
-    }
+//    /**
+//     * 包装一个内部view,这里直接以TextView为例
+//     * 必须给mTextView赋值
+//     */
+//    protected View newTagView (int res,int textViewid) throws Exception {
+//        if(res != 0){
+//            View view = LayoutInflater.from(getContext()).inflate(res,null);
+//            if(view == null){
+//                throw new RuntimeException("can not inflate view by id==="+res);
+//            }
+//            if(textViewid != 0){
+//                mTextView = (TextView) view.findViewById(textViewid);
+//            }
+//
+//            if(mTextView == null){
+//                throw new RuntimeException("can not find TextView by id==="+textViewid);
+//            }
+//            return view;
+//        }
+//
+//        RelativeLayout layout = new RelativeLayout(getContext());
+//        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+//        TextView tv = new TextView(getContext());
+//        mTextView = tv;
+//        tv.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.arrow_bottom,0);
+//        tv.setGravity(Gravity.CENTER);
+//
+//        layout.addView(tv,params);
+//        return layout;
+//    }
 }

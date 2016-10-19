@@ -3,18 +3,16 @@ package com.rock.android.tagselector.views;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.rock.android.tagselector.R;
 import com.rock.android.tagselector.interfaces.ITagSelector;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
-import com.rock.android.tagselector.interfaces.SelectorAdapter;
 import com.rock.android.tagselector.model.DataBean;
 
 import java.util.List;
@@ -22,10 +20,9 @@ import java.util.List;
 /**
  * Created by rock on 16/7/4.
  */
-public class SimpleSingleSelectListView extends ListView implements ITagSelector<DataBean> {
+public class SimpleSingleSelectListView extends ListView implements ITagSelector {
 
-//    private List<DataBean> mListData;
-    private SelectorAdapter mAdapter;
+    private SimpleAdapter mAdapter;
 
     private ITagSelectorTabView tabView;
 
@@ -51,7 +48,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
         init();
     }
 
-    private void init() {
+    protected void init() {
         if (isInEditMode()) return;
 
         setBackgroundColor(Color.WHITE);
@@ -59,7 +56,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
         setDividerHeight(1);
         setDivider(getResources().getDrawable(R.drawable.horizontal_line));
         mAdapter = new SimpleAdapter((Activity) getContext());
-        setAdapter((SimpleAdapter) mAdapter);
+        setAdapter(mAdapter);
 
         setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -78,22 +75,8 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
     }
 
     @Override
-    public void setData(@NonNull List<DataBean> list) {
-
-        setItemChecked(INVALID_POSITION,true);
-        mAdapter.setData(list);
-        mAdapter.notifyDataSetChanged();
-
-    }
-
-    @Override
     public void refresh() {
         mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public List<DataBean> getData() {
-        return (List<DataBean>) mAdapter.getData();
     }
 
     @Override
@@ -106,8 +89,40 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
     }
 
     @Override
-    public DataBean getDataByPosition(int position) {
+    public DataBean getCurrentItem(int position) {
         return mAdapter.getData().get(position);
+    }
+
+    @Override
+    public void insert(int position, Object o) {
+        mAdapter.getData().add(position, (DataBean) o);
+    }
+
+    @Override
+    public void remove(int position) {
+        mAdapter.getData().remove(position);
+    }
+
+    @Override
+    public void update(int position, Object o) {
+        mAdapter.getData().set(position, (DataBean) o);
+    }
+
+    @Override
+    public View getAdapterView() {
+        return this;
+    }
+
+    @Override
+    public void setDefaultItem(int position) {
+        if(getCheckedItemPosition() == INVALID_POSITION){
+            setItemChecked(position,true);
+        }
+    }
+
+    @Override
+    public BaseAdapter getListAdapter() {
+        return mAdapter;
     }
 
     @Override
@@ -117,7 +132,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
 
     @Override
     public int itemHeight() {
-        return mAdapter.getItemHeight();
+        return 50;
     }
 
     @Override
@@ -140,19 +155,7 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
         tabView = view;
     }
 
-    /**
-     * to set a custom Adapter to the listView,
-     *
-     * you must implement SelectorAdapter and extends ListAdapter
-     *
-     * */
-    @Override
-    public void setListAdapter(SelectorAdapter adapter) {
-        setAdapter((ListAdapter) adapter);
-        mAdapter = adapter;
-    }
-
-    class SimpleAdapter extends BaseSelectorAdapter<DataBean> implements SelectorAdapter{
+    public class SimpleAdapter extends BaseSelectorAdapter<DataBean>{
 
         public SimpleAdapter(List<DataBean> mList, Activity mContext) {
             super(mList, mContext);
@@ -169,22 +172,19 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
             holder.text.setText(mList.get(position).name);
         }
 
-        @Override
-        public void setData(List<? extends DataBean> list) {
+        public void setData(List<DataBean> list) {
             if(mList == null){
-                mList = (List<DataBean>) list;
+                mList = list;
             }else{
                 mList.clear();
                 mList.addAll(list);
             }
         }
 
-        @Override
         public List<DataBean> getData() {
             return mList;
         }
 
-        @Override
         public int getItemHeight() {
             return 50;
         }
