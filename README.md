@@ -12,8 +12,6 @@ be free to contact me by the blog above or email _wang1ran@163.com_
 
 ![gif](https://github.com/Rock610/TagSelectorView/blob/master/gif/gif2.gif)
 
-#### 2.0目前暂时未提交到jcenter,先上源码,稍后会提交.
-
 
 
 # Setup
