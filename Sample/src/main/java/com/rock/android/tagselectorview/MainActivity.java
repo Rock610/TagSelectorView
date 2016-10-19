@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         dataList.add(new Tags()
                 .setTags(dataBeanList2));
 
-        tagSelectorAdapter = new SimpleAdapter(dataList, this);
+        tagSelectorAdapter = new CustomAdapter(dataList, this);
         tagSelectView.setAdapter(tagSelectorAdapter);
         tagSelectView.setWrapperHeight(FrameLayout.LayoutParams.MATCH_PARENT);
 

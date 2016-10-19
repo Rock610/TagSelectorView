@@ -23,4 +23,7 @@ public interface BaseAdapter {
     boolean getChangeAfterClicked(int tabPosition);
 
     String getTagName(int tabPosition,int selectorPosition);
+
+    String getDefaultTagName(int position);
+
 }

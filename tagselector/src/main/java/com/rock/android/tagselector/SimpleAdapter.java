@@ -65,6 +65,11 @@ public class SimpleAdapter implements BaseAdapter {
         return tagsList.get(tabPosition).tags.get(selectorPosition).name;
     }
 
+    @Override
+    public String getDefaultTagName(int position) {
+        return tagsList.get(position).tags.get(0).name;
+    }
+
     private View newTagView (int res) {
         if(res != 0){
             return LayoutInflater.from(mContext).inflate(res,null);

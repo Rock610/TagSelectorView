@@ -179,7 +179,7 @@ public class TagSelectView extends FrameLayout {
 //        dropDownView.setContentView(adapter.getDropDownView(tabPosition));
         tabView.setup(listContentLayout, wrapperLayout,dropDownView , adapter.getTabView(tabPosition));
         tabView.setChangeAfterClick(adapter.getChangeAfterClicked(tabPosition));
-        tabView.setTag(adapter.getTagName(tabPosition,0));
+        tabView.setTag(adapter.getDefaultTagName(tabPosition));
         tabView.getTextView().setTextColor(tabTextColor);
 
         tabView.setOnStatusChangedListener(new ITagSelectorTabView.OnStatusChangedListener() {
