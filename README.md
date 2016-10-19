@@ -3,7 +3,7 @@ TagSelectorView
 
 A tag selector with animation
 
-# [已更新v2.0](https://github.com/Rock610/TagSelectorView/blob/v2.0/README.md)
+# [已更新v2.0](https://github.com/Rock610/TagSelectorView/tree/v2.0)
 
 [![download](https://api.bintray.com/packages/rock610/maven/tagselector/images/download.svg)](https://bintray.com/rock610/maven/tagselector/_latestVersion)
 [![blog](https://img.shields.io/badge/blog-%E7%AE%80%E4%B9%A6-blue.svg)](http://www.jianshu.com/users/55ddc6ee39e8/latest_articles)
