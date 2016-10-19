@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.rock.android.tagselector.LogUtil;
-import com.rock.android.tagselector.interfaces.ITagSelector;
+import com.rock.android.tagselector.SimpleAdapter;
 import com.rock.android.tagselector.interfaces.ITagSelectorTabView;
 import com.rock.android.tagselector.model.DataBean;
 import com.rock.android.tagselector.model.Tags;
@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TagSelectView tagSelectView;
     private List<Tags> dataList;
-    private ITagSelector tagSelectorView;
     private TextView firstTabTv;
+    private SimpleAdapter tagSelectorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 MyDataBean d = (MyDataBean) dataBean;
                 LogUtil.e("onTagSelected", "data name===" + d.name);
 
-                DataBean dataBean1 = (DataBean) tagSelectView.getTabView(tabPosition).getTagSelectorView().getData().get(selectorListPosition);
+                DataBean dataBean1 = (DataBean) tagSelectorAdapter.getItem(tabPosition,selectorListPosition);
+                        //(DataBean) tagSelectView.getTabView(tabPosition).getTagSelectorView().getCurrentItem(selectorListPosition);
                 LogUtil.e("onTagSelected", "data1 name===" + dataBean1.name);
                 //do something like request the network
 
@@ -82,13 +83,8 @@ public class MainActivity extends AppCompatActivity {
             dataBeanList.add(new MyDataBean("item A" + i));
         }
 
-        dataList.add(new Tags().
-                setDefaultTag(dataBeanList.get(0).name)
-                .setTags(dataBeanList)
-                .setChangeAfterClicked(true)
-                .setSelectFirst(false)
-                .setLayoutRes(R.layout.layout_tab_0)
-                .setTextViewId(R.id.theTextView));
+        dataList.add(new Tags()
+                .setTags(dataBeanList));
 
 
 
@@ -97,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
             dataBeanList1.add(new MyDataBean("item B" + i));
         }
 
-        dataList.add(new Tags(dataBeanList1, dataBeanList1.get(0).name, false, true));
+        dataList.add(new Tags()
+                .setTags(dataBeanList1));
 
 
         int countc = 10;
@@ -106,15 +103,12 @@ public class MainActivity extends AppCompatActivity {
             dataBeanList2.add(new MyDataBean("item C" + i));
         }
 
-        dataList.add(new Tags(dataBeanList2, dataBeanList2.get(0).name, false, true));
+        dataList.add(new Tags()
+                .setTags(dataBeanList2));
 
-        tagSelectView.attach(dataList);
+        tagSelectorAdapter = new SimpleAdapter(dataList, this);
+        tagSelectView.setAdapter(tagSelectorAdapter);
         tagSelectView.setWrapperHeight(FrameLayout.LayoutParams.MATCH_PARENT);
-
-        //pass a custom adapter to a selector
-        tagSelectorView = tagSelectView.getTabView(0).getTagSelectorView();
-        tagSelectorView.setListAdapter(new CustomAdapter(dataBeanList, this));
-
 
         firstTabTv = (TextView) findViewById(R.id.theTextView);
 
@@ -122,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickAddData(View v){
         //insert a data
-        tagSelectView.getTabView(1).getTagSelectorView().getData().add(0, new MyDataBean("im new"));
+        tagSelectView.getTabView(1).getTagSelectorView().insert(0, new MyDataBean("im new"));
         tagSelectView.getTabView(1).getTagSelectorView().refresh();
-
     }
 }
