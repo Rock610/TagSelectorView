@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class SimpleSingleSelectListView extends ListView implements ITagSelector {
 
-    private SimpleAdapter mAdapter;
+    private BaseSelectorAdapter mAdapter;
 
     private ITagSelectorTabView tabView;
 
@@ -55,14 +55,14 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
         setChoiceMode(CHOICE_MODE_SINGLE);
         setDividerHeight(1);
         setDivider(getResources().getDrawable(R.drawable.horizontal_line));
-        mAdapter = new SimpleAdapter((Activity) getContext());
+        mAdapter = newAdapter();
         setAdapter(mAdapter);
 
         setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(tabView.isChangeTagAfterClicked()){
-                    tabView.setTag(mAdapter.getData().get(position).name);
+                    tabView.setTag(((DataBean)mAdapter.getData().get(position)).name);
                 }
 
                 if(onItemClickListener != null){
@@ -74,6 +74,10 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
         setVisibility(View.GONE);
     }
 
+    protected BaseSelectorAdapter newAdapter(){
+        return new SimpleAdapter((Activity) getContext());
+    }
+
     @Override
     public void refresh() {
         mAdapter.notifyDataSetChanged();
@@ -83,19 +87,19 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
     public String getCheckedName() {
 
         if (getCheckedItemPosition() != INVALID_POSITION) {
-            return mAdapter.getData().get(getCheckedItemPosition()).name;
+            return ((DataBean) mAdapter.getData().get(getCheckedItemPosition())).name;
         }
         return "";
     }
 
     @Override
     public DataBean getCurrentItem(int position) {
-        return mAdapter.getData().get(position);
+        return (DataBean) mAdapter.getData().get(position);
     }
 
     @Override
     public void insert(int position, Object o) {
-        mAdapter.getData().add(position, (DataBean) o);
+        mAdapter.getData().add(position, o);
     }
 
     @Override
@@ -179,14 +183,6 @@ public class SimpleSingleSelectListView extends ListView implements ITagSelector
                 mList.clear();
                 mList.addAll(list);
             }
-        }
-
-        public List<DataBean> getData() {
-            return mList;
-        }
-
-        public int getItemHeight() {
-            return 50;
         }
     }
 

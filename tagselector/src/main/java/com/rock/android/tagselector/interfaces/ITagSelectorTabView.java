@@ -24,7 +24,7 @@ public interface ITagSelectorTabView {
 
     void close();
 
-    void close(boolean withAnim);
+    void close(boolean withAnim,boolean isCloseParent);
 
     void open();
 

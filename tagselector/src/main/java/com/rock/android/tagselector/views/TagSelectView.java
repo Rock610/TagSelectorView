@@ -200,7 +200,7 @@ public class TagSelectView extends FrameLayout {
             public void willOpen(ITagSelectorTabView view) {
 
                 if (lastOpenedTab != null && lastOpenedTab != view) {
-                    lastOpenedTab.close(false);
+                    lastOpenedTab.close(false,false);
                 }
 
             }
@@ -230,65 +230,6 @@ public class TagSelectView extends FrameLayout {
         mTabSelectViews.add(tabView);
         return tabView;
     }
-
-//    protected ITagSelectorTabView newTabView(final int tabPosition, Tags tags) {
-//        final ITagSelectorTabView tabView = new TagSelectorTabTabView(getContext());
-//        if (tags.selector != null) {
-//            tabView.setup(tags, listContentLayout, wrapperLayout, tags.selector);
-//        } else {
-//            tabView.setup(tags, listContentLayout, wrapperLayout);
-//        }
-//        tabView.getTextView().setTextColor(tabTextColor);
-//
-//        tabView.setOnStatusChangedListener(new ITagSelectorTabView.OnStatusChangedListener() {
-//            @Override
-//            public void willDismiss(ITagSelectorTabView view) {
-//            }
-//
-//            @Override
-//            public void dismissed(ITagSelectorTabView view) {
-//                if (onTagViewStatusChangedListener != null) {
-//                    onTagViewStatusChangedListener.onClosed(view);
-//                }
-//
-//                view.getTextView().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_bottom, 0);
-//            }
-//
-//            @Override
-//            public void willOpen(ITagSelectorTabView view) {
-//
-//                if (lastOpenedTab != null && lastOpenedTab != view) {
-//                    lastOpenedTab.close(false);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void opened(ITagSelectorTabView view) {
-//                lastOpenedTab = view;
-//                if (onTagViewStatusChangedListener != null) {
-//                    onTagViewStatusChangedListener.onOpened(view);
-//                }
-//
-//                view.getTextView().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_top, 0);
-//            }
-//        });
-//
-//        tabView.getTagSelectorView().setOnItemClickListener(new ITagSelector.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int position) {
-//
-//                tabView.close();
-//                if (onTagSelectedListener != null) {
-//                    onTagSelectedListener.onTagSelected(position, tabPosition);
-//                }
-//            }
-//        });
-//
-//        mTabSelectViews.add(tabView);
-//
-//        return tabView;
-//    }
 
     public ITagSelectorTabView getTabView(int position) {
         return mTabSelectViews.get(position);

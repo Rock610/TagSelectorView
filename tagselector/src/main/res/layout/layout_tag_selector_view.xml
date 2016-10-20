@@ -4,14 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/tabViewWrapperLayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:divider="@drawable/vertical_line"
-        android:showDividers="middle"
-        android:background="@android:color/white"
-        android:orientation="horizontal" />
 
     <FrameLayout
         android:id="@+id/listContentLayout"
@@ -27,6 +19,15 @@
             android:background="@android:color/transparent" />
 
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/tabViewWrapperLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:divider="@drawable/vertical_line"
+        android:showDividers="middle"
+        android:background="@android:color/white"
+        android:orientation="horizontal" />
 
     <View
         android:id="@+id/bottomLine"

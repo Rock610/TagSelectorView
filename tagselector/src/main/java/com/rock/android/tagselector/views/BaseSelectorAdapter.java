@@ -51,6 +51,10 @@ public class BaseSelectorAdapter<T> extends BaseAdapter{
         notifyDataSetChanged();
     }
 
+    public List<T> getData(){
+        return mList;
+    }
+
     @Override
     public Object getItem(int position) {
         return mList == null ? null:mList.get(position);

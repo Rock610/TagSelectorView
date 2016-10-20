@@ -97,24 +97,29 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
 
     @Override
     public void close() {
-        close(true);
+        close(true,true);
     }
 
     @Override
-    public void close(boolean withAnim) {
+    public void close(boolean withAnim, final boolean isCloseParent) {
         if (onStatusChangedListener != null) {
             onStatusChangedListener.willDismiss(this);
         }
 
         mWrapper.clearAnimation();
+        selectorParent.clearAnimation();
 
         if (!isOpening) return;
 
         if (!withAnim) {
-            afterClose();
+            afterClose(isCloseParent);
             return;
         }
 
+        if(isCloseParent){
+            Animation alpha = AnimationUtils.loadAnimation(getContext(), R.anim.ts_parent_out);
+            selectorParent.startAnimation(alpha);
+        }
         Animation ta = AnimationUtils.loadAnimation(getContext(), R.anim.ts_content_out);
         mWrapper.startAnimation(ta);
 
@@ -122,15 +127,15 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                afterClose();
+                afterClose(isCloseParent);
             }
         }, ta.getDuration());
     }
 
-    private void afterClose() {
+    private void afterClose(boolean isCloseParent) {
         isOpening = false;
         selectorView.hide();
-        if (selectorParent != null && selectorParent.getVisibility() != View.GONE) {
+        if (selectorParent != null && selectorParent.getVisibility() != View.GONE && isCloseParent) {
             selectorParent.setVisibility(View.GONE);
         }
         if (onStatusChangedListener != null) {
@@ -145,13 +150,17 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
             onStatusChangedListener.willOpen(this);
         }
         mWrapper.clearAnimation();
+        selectorParent.clearAnimation();
         if (isOpening) return;
 
         if (selectorParent != null && selectorParent.getVisibility() != View.VISIBLE) {
             selectorParent.setVisibility(View.VISIBLE);
+            Animation alpha = AnimationUtils.loadAnimation(getContext(), R.anim.ts_parent_in);
+            selectorParent.startAnimation(alpha);
         }
         Animation ta = AnimationUtils.loadAnimation(getContext(), R.anim.ts_content_in);
         mWrapper.startAnimation(ta);
+
         selectorView.show();
         isOpening = true;
         if (onStatusChangedListener != null) {
@@ -229,35 +238,4 @@ public class TagSelectorTabTabView extends RelativeLayout implements ITagSelecto
         return isChangeAfterClicked;
     }
 
-//    /**
-//     * 包装一个内部view,这里直接以TextView为例
-//     * 必须给mTextView赋值
-//     */
-//    protected View newTagView (int res,int textViewid) throws Exception {
-//        if(res != 0){
-//            View view = LayoutInflater.from(getContext()).inflate(res,null);
-//            if(view == null){
-//                throw new RuntimeException("can not inflate view by id==="+res);
-//            }
-//            if(textViewid != 0){
-//                mTextView = (TextView) view.findViewById(textViewid);
-//            }
-//
-//            if(mTextView == null){
-//                throw new RuntimeException("can not find TextView by id==="+textViewid);
-//            }
-//            return view;
-//        }
-//
-//        RelativeLayout layout = new RelativeLayout(getContext());
-//        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-//        TextView tv = new TextView(getContext());
-//        mTextView = tv;
-//        tv.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.arrow_bottom,0);
-//        tv.setGravity(Gravity.CENTER);
-//
-//        layout.addView(tv,params);
-//        return layout;
-//    }
 }
