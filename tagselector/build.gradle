@@ -15,7 +15,7 @@ ext {
     gitUrl = 'https://github.com/Rock610/TagSelectorView.git'
 
 //    libraryVersion = '1.2.2.3'
-    libraryVersion = '2.0.0'
+    libraryVersion = '2.0.1'
 
     developerId = 'Rock610'
     developerName = 'Rock610'
