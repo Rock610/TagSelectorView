@@ -88,7 +88,7 @@ public class BaseSelectorAdapter<T> extends BaseAdapter{
     }
 
     public static class ViewHolder{
-        TextView text;
-        RadioButton radioButton;
+        public TextView text;
+        public RadioButton radioButton;
     }
 }
