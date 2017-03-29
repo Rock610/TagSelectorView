@@ -15,7 +15,7 @@ ext {
     gitUrl = 'https://github.com/Rock610/TagSelectorView.git'
 
 //    libraryVersion = '1.2.2.3'
-    libraryVersion = '2.0.3'
+    libraryVersion = '2.0.4'
 
     developerId = 'Rock610'
     developerName = 'Rock610'
@@ -28,7 +28,7 @@ ext {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         minSdkVersion 14
